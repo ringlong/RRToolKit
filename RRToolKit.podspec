@@ -19,11 +19,10 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/ringlong/RRToolKit", :tag => "0.0.1" }
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "RRToolKit", "RRToolKit/**/*.{h,m}"
+  s.iOS.exclude_files = 'RRToolKit/*.pch'
 
-  s.public_header_files = "Classes/**/*.h"
+  s.public_header_files = "RRToolKit/**/*.h"
   s.frameworks = "CoreGraphics"
   s.requires_arc = true
-  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
 end
