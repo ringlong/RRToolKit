@@ -10,14 +10,14 @@ Pod::Spec.new do |s|
   s.name         = "RRToolKit"
   s.version      = "0.0.1"
   s.summary      = "A ToolKit of iOS development."
-  s.homepage     = "http://EXAMPLE/RRToolKit"
-  s.license      = "MIT (example)"
-  s.author             = { "Ryan" => "266949@qq.com" }
+  s.homepage     = "https://github.com/ringlong/RRToolKit"
+  s.license      = "MIT"
+  s.author       = { "Ryan" => "266949@qq.com" }
 
   s.platform     = :ios, "6.0"
   s.ios.deployment_target = "6.0"
 
-  s.source       = { :git => "http://EXAMPLE/RRToolKit.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/ringlong/RRToolKit", :tag => "0.0.1" }
 
   s.source_files  = "Classes", "Classes/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
