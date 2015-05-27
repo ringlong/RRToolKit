@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Ryan. All rights reserved.
 //
 
-#ifndef RRFrameworkCore_EYPreprocessorMacros_h
-#define RRFrameworkCore_EYPreprocessorMacros_h
+#ifndef RRFrameworkCore_RRPreprocessorMacros_h
+#define RRFrameworkCore_RRPreprocessorMacros_h
 
 /**
  * Borrowed from Apple's AvailabiltyInternal.h header.It's a gcc-supported flag.
  */
-#define __EYDEPRECATED __attribute__((deprecated))
+#define __RRDEPRECATED __attribute__((deprecated))
 
 /**
  * Add this macro before each category implementation, so we don't have to use
@@ -40,8 +40,7 @@
 
 #define IsNumber(__number) ([(__number) isKindOfClass:[NSNumber class]])
 
-#define IsOS6OrLater    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
-#define IsOS7OrLater    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-#define IsOS8OrLater    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define iOS7OrLater    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define iOS8OrLater    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
-#endif //RRFrameworkCore_EYPreprocessorMacros_h
+#endif //RRFrameworkCore_RRPreprocessorMacros_h
