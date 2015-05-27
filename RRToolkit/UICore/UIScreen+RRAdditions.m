@@ -7,6 +7,7 @@
 //
 
 #import "UIScreen+RRAdditions.h"
+#import "RRPreprocessorMacros.h"
 
 @implementation UIScreen (Additions)
 
@@ -14,13 +15,13 @@ CGFloat OnePixel() { return 1.0 / UIScreen.scale; }
 
 + (CGFloat)screenWidth{
     if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        if (iOS8OrLater) {
             return [UIScreen mainScreen].nativeBounds.size.height / [UIScreen mainScreen].nativeScale;
         } else {
             return [UIScreen mainScreen].bounds.size.height;
         }
     } else {
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        if (iOS8OrLater) {
             return [UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale;
         } else {
             return [UIScreen mainScreen].bounds.size.width;
@@ -30,7 +31,7 @@ CGFloat OnePixel() { return 1.0 / UIScreen.scale; }
 
 + (CGFloat)screenHeight{
     if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        if (iOS8OrLater) {
             if ([UIApplication sharedApplication].statusBarFrame.size.width > 20) {
                 return [UIScreen mainScreen].nativeBounds.size.width / [UIScreen mainScreen].nativeScale - 20;
             }
@@ -42,7 +43,7 @@ CGFloat OnePixel() { return 1.0 / UIScreen.scale; }
             return [UIScreen mainScreen].bounds.size.width;
         }
     } else {
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        if (iOS8OrLater) {
             if ([UIApplication sharedApplication].statusBarFrame.size.height > 20) {
                 return [UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale - 20;
             }
@@ -57,7 +58,7 @@ CGFloat OnePixel() { return 1.0 / UIScreen.scale; }
 }
 
 + (CGFloat)scale{
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+    if (iOS8OrLater) {
         return [UIScreen mainScreen].nativeScale;
     } else {
         return [UIScreen mainScreen].scale;

@@ -12,12 +12,14 @@
 #include <net/if.h>
 #include <net/if_dl.h>
 #import "RRPreprocessorMacros.h"
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
 
 RR_FIX_CATEGORY_BUG(UIDeviceEYAdditions)
 
 CGAffineTransform rotateTransformForOrientation(UIInterfaceOrientation orientation) {
     if (orientation == UIInterfaceOrientationLandscapeLeft) {
-        return CGAffineTransformMakeRotation(M_PI*1.5);
+        return CGAffineTransformMakeRotation(M_PI * 1.5);
         
     } else if (orientation == UIInterfaceOrientationLandscapeRight) {
         return CGAffineTransformMakeRotation(M_PI_2);
@@ -330,6 +332,48 @@ CGAffineTransform rotateTransformForOrientation(UIInterfaceOrientation orientati
     if ([platform hasPrefix:@"AppleTV"]) return UIDeviceFamilyAppleTV;
     if ([platform hasSuffix:@"86"] || [platform isEqual:@"x86_64"]) return UIDeviceFamilySimulator;
     return UIDeviceFamilyUnknown;
+}
+
++ (UIDeviceCarrier)currentCarrierName {
+    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    CTCarrier *currentCarrier = networkInfo.subscriberCellularProvider;
+    
+    if (!currentCarrier || !currentCarrier.mobileNetworkCode) {
+        // 模拟器取不到运营商或者手机未插卡或者iPod
+        return UIDeviceCarrierUnkonw;
+    }
+    
+    NSUInteger codeNum = currentCarrier.mobileNetworkCode.integerValue;
+    NSString *carrierName = currentCarrier.carrierName;
+    // 中国移动
+    for (NSNumber *code in @[@0, @2, @7]) {
+        if (code.integerValue == codeNum) {
+            return UIDeviceCarrierCMCC;
+        }
+    }
+    if ([carrierName isEqualToString:@"中国移动"]) {
+        return UIDeviceCarrierCMCC;
+    }
+    // 中国联通
+    for (NSNumber *code in @[@1, @6]) {
+        if (code.integerValue == codeNum) {
+            return UIDeviceCarrierChinaUnicom;
+        }
+    }
+    if ([carrierName isEqualToString:@"中国联通"]) {
+        return UIDeviceCarrierChinaUnicom;
+    }
+    // 中国电信
+    for (NSNumber *code in @[@3, @5]) {
+        if (code.integerValue == codeNum) {
+            return UIDeviceCarrierChinaTelecom;
+        }
+    }
+    if ([carrierName isEqualToString:@"中国电信"]) {
+        return UIDeviceCarrierChinaTelecom;
+    }
+    
+    return UIDeviceCarrierUnkonw;
 }
 
 #pragma mark MAC addy

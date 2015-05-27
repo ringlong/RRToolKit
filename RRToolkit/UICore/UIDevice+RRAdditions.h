@@ -107,6 +107,13 @@ typedef NS_ENUM(NSInteger, UIDeviceFamily) {
     UIDeviceFamilySimulator
 };
 
+typedef NS_ENUM(NSUInteger, UIDeviceCarrier) {
+    UIDeviceCarrierCMCC = 1,
+    UIDeviceCarrierChinaUnicom,
+    UIDeviceCarrierChinaTelecom,
+    UIDeviceCarrierUnkonw,
+};
+
 UIKIT_EXTERN CGAffineTransform rotateTransformForOrientation(UIInterfaceOrientation orientation);
 
 @interface UIDevice (RRAdditions)
@@ -139,5 +146,8 @@ UIKIT_EXTERN CGAffineTransform rotateTransformForOrientation(UIInterfaceOrientat
 
 - (BOOL)hasRetinaDisplay;
 - (UIDeviceFamily)deviceFamily;
+
++ (UIDeviceCarrier)currentCarrierName;
+
 
 @end
