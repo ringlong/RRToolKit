@@ -15,3 +15,4 @@
 #import "UIButton+RRAdditions.h"
 #import "UILabel+RRAdditions.h"
 #import "UITableView+RRAdditions.h"
+#import "UIScreen+RRAdditions.h"
