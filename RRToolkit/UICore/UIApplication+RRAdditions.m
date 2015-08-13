@@ -34,7 +34,7 @@
 #pragma mark - App store
 + (BOOL)appStoreWithAppId:(NSString *)appId {
     NSString *appStoreURLString;
-    if (IsOS7OrLater) {
+    if (iOS7OrLater) {
         appStoreURLString = @"itms-apps://itunes.apple.com/app/id";
     } else {
         appStoreURLString = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=";
@@ -50,8 +50,8 @@
 
 + (BOOL)appStoreReviewWithAppId:(NSString *)appId {
     NSString *appStoreURLFormatString;
-    if (IsOS7OrLater) {
-        if (IsOS8OrLater) {
+    if (iOS7OrLater) {
+        if (iOS8OrLater) {
             appStoreURLFormatString = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%@&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
         } else {
             appStoreURLFormatString = @"itms-apps://itunes.apple.com/app/id%@";
