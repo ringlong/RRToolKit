@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, UIButtonTitleImageAlignment) {
+  UIButtonTitleImageAlignmentLeftRight,
+  UIButtonTitleImageAlignmentRightLeft,
+  UIButtonTitleImageAlignmentTopBottom,
+  UIButtonTitleImageAlignmentBottomTop,
+  UIButtonTitleImageAlignmentDefault = UIButtonTitleImageAlignmentRightLeft,
+};
+
 @interface UIButton (RRAdditions)
 
 // Quickly create a button.
@@ -29,5 +37,7 @@
            image:(UIImage *)image
  backgroundImage:(UIImage *)backgroundImage
         forState:(UIControlState)state;
+
+- (void)setTitleImageAligment:(UIButtonTitleImageAlignment)aligment withSpace:(CGFloat)space;
 
 @end

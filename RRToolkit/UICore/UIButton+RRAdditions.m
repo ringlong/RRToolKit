@@ -63,4 +63,85 @@
     }
 }
 
+
+#pragma mark - Public
+- (void)setTitleImageAligment:(UIButtonTitleImageAlignment)aligment withSpace:(CGFloat)space {
+  switch (aligment) {
+	case UIButtonTitleImageAlignmentRightLeft:
+	  [self imageTitleHorizontalAlignmentWithSpace:space];
+	  break;
+	case UIButtonTitleImageAlignmentLeftRight:
+	  [self titleImageHorizontalAlignmentWithSpace:space];
+	  break;
+	case UIButtonTitleImageAlignmentTopBottom:
+	  [self titleImageVerticalAlignmentWithSpace:space];
+	  break;
+	case UIButtonTitleImageAlignmentBottomTop:
+	  [self imageTitleHorizontalAlignmentWithSpace:space];
+	  break;
+  }
+}
+
+#pragma mark - Private
+
+- (void)titleImageHorizontalAlignmentWithSpace:(CGFloat)space {
+  [self resetEdgeInsets];
+  [self setNeedsLayout];
+  [self layoutIfNeeded];
+  
+  CGRect contentRect = [self contentRectForBounds:self.bounds];
+  CGSize titleSize = [self titleRectForContentRect:contentRect].size;
+  CGSize imageSize = [self imageRectForContentRect:contentRect].size;
+  
+  self.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, space);
+  self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize.width, 0, imageSize.width);
+  self.imageEdgeInsets = UIEdgeInsetsMake(0, titleSize.width + space, 0, -titleSize.width - space);
+}
+
+- (void)imageTitleHorizontalAlignmentWithSpace:(CGFloat)space {
+  [self resetEdgeInsets];
+  self.titleEdgeInsets = UIEdgeInsetsMake(0, space, 0, -space);
+  self.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, space);
+}
+
+- (void)titleImageVerticalAlignmentWithSpace:(CGFloat)space {
+  [self verticalAlignmentWithTitleTop:YES space:space];
+}
+
+- (void)imageTitleVerticalAlignmentWithSpace:(CGFloat)space {
+  [self verticalAlignmentWithTitleTop:NO space:space];
+}
+
+- (void)resetEdgeInsets {
+  self.contentEdgeInsets = UIEdgeInsetsZero;
+  self.imageEdgeInsets = UIEdgeInsetsZero;
+  self.titleEdgeInsets = UIEdgeInsetsZero;
+}
+
+- (void)verticalAlignmentWithTitleTop:(BOOL)isTop space:(CGFloat)space {
+  [self resetEdgeInsets];
+  [self setNeedsLayout];
+  [self layoutIfNeeded];
+  
+  CGRect contentRect = [self contentRectForBounds:self.bounds];
+  CGSize titleSize = [self titleRectForContentRect:contentRect].size;
+  CGSize imageSize = [self imageRectForContentRect:contentRect].size;
+  
+  float halfWidth = (titleSize.width + imageSize.width) / 2;
+  float halfHeight = (titleSize.height + imageSize.height) / 2;
+  
+  float topInset = MIN(halfHeight, titleSize.height);
+  float leftInset = (titleSize.width - imageSize.width) > 0 ? (titleSize.width - imageSize.width) / 2 : 0;
+  float bottomInset = (titleSize.height - imageSize.height) > 0 ? (titleSize.height - imageSize.height) / 2 : 0;
+  float rightInset = MIN(halfWidth, titleSize.width);
+  
+  if (isTop) {
+	self.titleEdgeInsets = UIEdgeInsetsMake(-titleSize.height - space, - halfWidth, imageSize.height + space, halfWidth);
+	self.contentEdgeInsets = UIEdgeInsetsMake(topInset + space, leftInset, -bottomInset, -rightInset);
+  } else {
+	self.titleEdgeInsets = UIEdgeInsetsMake(imageSize.height + space, - halfWidth, -titleSize.height - space, halfWidth);
+	self.contentEdgeInsets = UIEdgeInsetsMake(-bottomInset, leftInset, topInset + space, -rightInset);
+  }
+}
+
 @end
