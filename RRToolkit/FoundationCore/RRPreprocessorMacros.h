@@ -40,7 +40,8 @@
 
 #define IsNumber(__number) ([(__number) isKindOfClass:[NSNumber class]])
 
-#define iOS7OrLater    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 #define iOS8OrLater    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define iOS9OrLater    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+#define iOS10OrLater    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
 
 #endif //RRFrameworkCore_RRPreprocessorMacros_h
