@@ -6,7 +6,6 @@
 //  Copyright (c) 2014年 Ryan. All rights reserved.
 //
 
-#import "UIApplication+RRAdditions.h"
 #import "UIColor+RRAdditions.h"
 #import "UIDevice+RRAdditions.h"
 #import "UIImage+RRAdditions.h"
