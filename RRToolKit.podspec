@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "RRToolKit"
-  s.version      = "1.0.3"
+  s.version      = "1.0.4"
   s.summary      = "A ToolKit of iOS development."
   s.homepage     = "https://github.com/ringlong/RRToolKit"
   s.license      = "MIT"
