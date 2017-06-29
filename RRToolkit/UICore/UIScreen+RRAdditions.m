@@ -15,54 +15,30 @@ CGFloat OnePixel() { return 1.0 / UIScreen.scale; }
 
 + (CGFloat)screenWidth{
     if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        if (iOS8OrLater) {
-            return [UIScreen mainScreen].nativeBounds.size.height / [UIScreen mainScreen].nativeScale;
-        } else {
-            return [UIScreen mainScreen].bounds.size.height;
-        }
+        return [UIScreen mainScreen].nativeBounds.size.height / [UIScreen mainScreen].nativeScale;
+
     } else {
-        if (iOS8OrLater) {
-            return [UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale;
-        } else {
-            return [UIScreen mainScreen].bounds.size.width;
-        }
+        return [UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale;
     }
 }
 
 + (CGFloat)screenHeight{
     if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        if (iOS8OrLater) {
-            if ([UIApplication sharedApplication].statusBarFrame.size.width > 20) {
-                return [UIScreen mainScreen].nativeBounds.size.width / [UIScreen mainScreen].nativeScale - 20;
-            }
-            return [UIScreen mainScreen].nativeBounds.size.width / [UIScreen mainScreen].nativeScale;
-        } else {
-            if ([UIApplication sharedApplication].statusBarFrame.size.width > 20) {
-                return [UIScreen mainScreen].bounds.size.width - 20;
-            }
-            return [UIScreen mainScreen].bounds.size.width;
+        if ([UIApplication sharedApplication].statusBarFrame.size.width > 20) {
+            return [UIScreen mainScreen].nativeBounds.size.width / [UIScreen mainScreen].nativeScale - 20;
         }
+        return [UIScreen mainScreen].nativeBounds.size.width / [UIScreen mainScreen].nativeScale;
+
     } else {
-        if (iOS8OrLater) {
-            if ([UIApplication sharedApplication].statusBarFrame.size.height > 20) {
-                return [UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale - 20;
-            }
-            return [UIScreen mainScreen].nativeBounds.size.height / [UIScreen mainScreen].nativeScale;
-        } else {
-            if ([UIApplication sharedApplication].statusBarFrame.size.height > 20) {
-                return [UIScreen mainScreen].bounds.size.height - 20;
-            }
-            return [UIScreen mainScreen].bounds.size.height;
+        if ([UIApplication sharedApplication].statusBarFrame.size.height > 20) {
+            return [UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale - 20;
         }
+        return [UIScreen mainScreen].nativeBounds.size.height / [UIScreen mainScreen].nativeScale;
     }
 }
 
 + (CGFloat)scale{
-    if (iOS8OrLater) {
-        return [UIScreen mainScreen].nativeScale;
-    } else {
-        return [UIScreen mainScreen].scale;
-    }
+    return [UIScreen mainScreen].nativeScale;
 }
 
 + (CGFloat)screenScaleRatio {
