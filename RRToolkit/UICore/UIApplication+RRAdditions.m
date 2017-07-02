@@ -34,11 +34,7 @@
 #pragma mark - App store
 + (BOOL)appStoreWithAppId:(NSString *)appId {
     NSString *appStoreURLString;
-    if (iOS7OrLater) {
-        appStoreURLString = @"itms-apps://itunes.apple.com/app/id";
-    } else {
-        appStoreURLString = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=";
-    }
+    appStoreURLString = @"itms-apps://itunes.apple.com/app/id";
     NSString* urlPath = [appStoreURLString stringByAppendingString:appId];
     return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
@@ -50,15 +46,7 @@
 
 + (BOOL)appStoreReviewWithAppId:(NSString *)appId {
     NSString *appStoreURLFormatString;
-    if (iOS7OrLater) {
-        if (iOS8OrLater) {
-            appStoreURLFormatString = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%@&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
-        } else {
-            appStoreURLFormatString = @"itms-apps://itunes.apple.com/app/id%@";
-        }
-    } else {
-        appStoreURLFormatString = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@";
-    }
+    appStoreURLFormatString = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%@&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
     NSString* urlPath = [NSString stringWithFormat:appStoreURLFormatString, appId];
     return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
