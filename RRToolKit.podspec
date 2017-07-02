@@ -8,14 +8,14 @@
 
 Pod::Spec.new do |s|
   s.name         = "RRToolKit"
-  s.version      = "1.0.4"
+  s.version      = "1.0.5"
   s.summary      = "A ToolKit of iOS development."
   s.homepage     = "https://github.com/ringlong/RRToolKit"
   s.license      = "MIT"
   s.author       = { "Ryan" => "266949@qq.com" }
 
-  s.platform     = :ios, "6.0"
-  s.ios.deployment_target = "6.0"
+  s.platform     = :ios, "8.0"
+  s.ios.deployment_target = "8.0"
 
   s.source       = { :git => "https://github.com/ringlong/RRToolKit.git", :tag => "0.0.1" }
 
