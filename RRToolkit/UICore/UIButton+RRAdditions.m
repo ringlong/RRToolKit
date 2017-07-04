@@ -77,7 +77,7 @@
 	  [self titleImageVerticalAlignmentWithSpace:space];
 	  break;
 	case UIButtonTitleImageAlignmentBottomTop:
-	  [self imageTitleHorizontalAlignmentWithSpace:space];
+	  [self imageTitleVerticalAlignmentWithSpace:space];
 	  break;
   }
 }
@@ -124,7 +124,7 @@
   [self layoutIfNeeded];
   
   CGRect contentRect = [self contentRectForBounds:self.bounds];
-  CGSize titleSize = [self titleRectForContentRect:contentRect].size;
+  CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
   CGSize imageSize = [self imageRectForContentRect:contentRect].size;
   
   float halfWidth = (titleSize.width + imageSize.width) / 2;
